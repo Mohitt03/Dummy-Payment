@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Dummy Stripe Gateway</title>
+</head>
+
+<body>
+  <!-- <h1>Products (Test)</h1>
+  <ul>
+    <% products.forEach(function(p){ %>
+      <li>
+        <strong><%= p.name %></strong> — ₹<%= (p.amount/100).toFixed(2) %>
+        <button onclick="handleBuy('<%= p.id %>')">Buy</button>
+      </li>
+    <% }) %>
+  </ul> -->
+
+
+  <h1>Dummy Payment Gateway</h1>
+
+  <% products.forEach(p=> { %>
+    <p>
+      <%= p.name %> — ₹<%= p.amount / 100 %>
+    </p>
+    <a href="/payment/create-checkout-session/<%= p.id  %>"><button>Pay Now</button></a>
+    <% }); %>
+
+      <!-- <script src="/client.js"></script> -->
+
+
+      <!-- <script>
+
+        async function pay(productId) {
+          const res = await fetch("/payment/create-checkout-session", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ productId })
+          });
+
+          const data = await res.json();
+          window.location.href = data.url;
+        }
+
+      </script> -->
+</body>
+
+</html>
