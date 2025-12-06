@@ -38,6 +38,26 @@ router.get("/create-checkout-session/:id", async (req, res) => {
         console.log(order._id.toString());
 
 
+        // const session = await stripe.checkout.sessions.create({
+        //     payment_method_types: ["card"],
+        //     mode: "payment",
+        //     line_items: [
+        //         {
+        //             price_data: {
+        //                 currency: "inr",
+        //                 unit_amount: product.amount,
+        //                 product_data: { name: product.name }
+        //             },
+        //             quantity: 1,
+        //         }
+        //     ],
+        //     metadata: { orderId: order._id.toString() },
+        //     success_url: `${process.env.BASE_URL}/success`,
+        //     cancel_url: `${process.env.BASE_URL}/cancel`,
+        // });
+
+
+
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
             mode: "payment",
@@ -55,6 +75,8 @@ router.get("/create-checkout-session/:id", async (req, res) => {
             success_url: `${process.env.BASE_URL}/success`,
             cancel_url: `${process.env.BASE_URL}/cancel`,
         });
+
+
 
 
         order.stripeSessionId = session.id;
